@@ -1,6 +1,7 @@
 import express from 'express';
-import connectDB from './utils/connectDB';
+import multer from 'multer';
 
+import connectDB from './utils/connectDB';
 import authApi from './apis/auth';
 import userApi from './apis/users';
 import postApi from './apis/posts';
@@ -11,8 +12,18 @@ const app = express();
 connectDB();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('<h1>hello world</h1>');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage });
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  res.status(200).json('file has been uploaded');
 });
 
 app.use('/api/auth', authApi);
