@@ -2,6 +2,7 @@ import express from 'express';
 import connectDB from './utils/connectDB';
 
 import authApi from './apis/auth';
+import userApi from './apis/users';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authApi);
+app.use('/api/user', userApi);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log('listening to port on ', port));
