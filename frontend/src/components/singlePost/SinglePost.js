@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classes from './SinglePost.module.css';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const SinglePost = () => {
   const location = useLocation();
@@ -39,7 +39,10 @@ const SinglePost = () => {
 
         <div className={classes.singlePostInfo}>
           <span className={classes.singlePostAuthor}>
-            Author: <b>{post.username}</b>
+            Author:
+            <Link to={`/?user=${post.username}`} className={classes.link}>
+              <b>{post.username}</b>
+            </Link>
           </span>
           <span className={classes.singlePostDate}>
             {new Date(post.createdAt).toDateString()}

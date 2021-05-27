@@ -1,5 +1,6 @@
 import classes from './Sidebar.module.css';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const [categorys, setCategorys] = useState([]);
@@ -34,9 +35,11 @@ const Sidebar = () => {
         <span className={classes.sidebarTitle}>CATEGORIES</span>
         <ul className={classes.sidebarList}>
           {categorys.map((category) => (
-            <li className={classes.sidebarListItem} key={category._id}>
-              {category.name}
-            </li>
+            <Link to={`/?cat=${category.name}`} className={classes.link}>
+              <li className={classes.sidebarListItem} key={category._id}>
+                {category.name}
+              </li>
+            </Link>
           ))}
         </ul>
       </div>
