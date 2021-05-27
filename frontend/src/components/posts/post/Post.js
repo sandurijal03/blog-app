@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Post.module.css';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
   console.log(post);
@@ -12,10 +13,13 @@ const Post = ({ post }) => {
       />
       <div className={classes.postInfo}>
         <div className={classes.postCats}>
-          <span className={classes.postCat}>Musicc</span>
-          <span className={classes.postCat}>Life</span>
+          {post.categories.map((c) => (
+            <span className={classes.postCat}>{c.name}</span>
+          ))}
         </div>
-        <span className={classes.postTitle}>{post.title}</span>
+        <Link to={`/post/${post._id}`}>
+          <span className={classes.postTitle}>{post.title}</span>
+        </Link>
         <hr />
         <span className={classes.postDate}>
           {new Date(post.createdAt).toDateString()}
