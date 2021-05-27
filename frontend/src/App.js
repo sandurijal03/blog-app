@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './pages/home/Home';
@@ -8,9 +8,11 @@ import Write from './pages/write/Write';
 import Settings from './pages/settings/Settings';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import { Context } from './context/Context';
 
 const App = () => {
-  const user = false;
+  const { user } = useContext(Context);
+
   return (
     <Router>
       <Topbar />
@@ -18,11 +20,19 @@ const App = () => {
         <Route path='/' exact>
           <Home />
         </Route>
-        <Route path='/register'>{user ? <Home /> : <Register />}</Route>
-        <Route path='/login'>{user ? <Home /> : <Login />}</Route>
-        <Route path='/write'>{user ? <Write /> : <Register />}</Route>
-        <Route path='/settings'>{user ? <Settings /> : <Register />}</Route>
-        <Route path='/post/:postId'>
+        <Route exact path='/register'>
+          {user ? <Home /> : <Register />}
+        </Route>
+        <Route exact path='/login'>
+          {user ? <Home /> : <Login />}
+        </Route>
+        <Route exact path='/write'>
+          {user ? <Write /> : <Register />}
+        </Route>
+        <Route exact path='/settings'>
+          {user ? <Settings /> : <Register />}
+        </Route>
+        <Route exact path='/post/:postId'>
           <Single />
         </Route>
       </Switch>

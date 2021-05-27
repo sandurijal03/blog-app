@@ -3,14 +3,11 @@ import classes from './Post.module.css';
 import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
-  console.log(post);
+  const PF = 'localhost:3001/images/';
+
   return (
     <div className={classes.post}>
-      <img
-        className={classes.postImg}
-        src={`https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500`}
-        alt=''
-      />
+      <img className={classes.postImg} src={PF + post.photo} alt='' />
       <div className={classes.postInfo}>
         <div className={classes.postCats}>
           {post.categories.map((c) => (

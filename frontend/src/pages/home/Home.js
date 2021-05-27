@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className={classes.home}>
+      <div className={classes.home} key={posts._id}>
         <Posts posts={posts} key={posts._id} />
         <Sidebar />
       </div>

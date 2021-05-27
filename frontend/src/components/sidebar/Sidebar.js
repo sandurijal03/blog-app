@@ -9,8 +9,6 @@ const Sidebar = () => {
     const getCategory = async () => {
       const response = await fetch('/category');
       const res = await response.json();
-
-      console.log(res);
       setCategorys(res);
     };
 

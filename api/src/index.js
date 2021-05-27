@@ -1,5 +1,7 @@
+import path from 'path';
+
 import express from 'express';
-import multer from 'multer';
+const multer = require('multer');
 
 import connectDB from './utils/connectDB';
 import authApi from './apis/auth';
@@ -11,6 +13,7 @@ const app = express();
 
 connectDB();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, './images')));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
