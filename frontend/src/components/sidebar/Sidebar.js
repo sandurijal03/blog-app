@@ -1,7 +1,21 @@
 import classes from './Sidebar.module.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Sidebar = () => {
+  const [categorys, setCategorys] = useState([]);
+
+  useEffect(() => {
+    const getCategory = async () => {
+      const response = await fetch('/category');
+      const res = await response.json();
+
+      console.log(res);
+      setCategorys(res);
+    };
+
+    getCategory();
+  }, []);
+
   return (
     <div className={classes.sidebar}>
       <div className={classes.sidebarItem}>
@@ -19,12 +33,11 @@ const Sidebar = () => {
       <div className={classes.sidebarItem}>
         <span className={classes.sidebarTitle}>CATEGORIES</span>
         <ul className={classes.sidebarList}>
-          <li className={classes.sidebarListItem}>Life</li>
-          <li className={classes.sidebarListItem}>Music</li>
-          <li className={classes.sidebarListItem}>Style</li>
-          <li className={classes.sidebarListItem}>Sport</li>
-          <li className={classes.sidebarListItem}>Tech</li>
-          <li className={classes.sidebarListItem}>Cinema</li>
+          {categorys.map((category) => (
+            <li className={classes.sidebarListItem} key={category._id}>
+              {category.name}
+            </li>
+          ))}
         </ul>
       </div>
       <div className={classes.sidebarItem}>

@@ -6,7 +6,7 @@ const Posts = ({ posts }) => {
   return (
     <div className={classes.posts}>
       {posts.map((post) => (
-        <Post post={post} />
+        <Post post={post} key={post._id} />
       ))}
 
       {/* <Post img='https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500' />

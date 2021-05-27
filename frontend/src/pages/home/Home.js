@@ -27,7 +27,7 @@ const Home = () => {
     <>
       <Header />
       <div className={classes.home}>
-        <Posts posts={posts} />
+        <Posts posts={posts} key={posts._id} />
         <Sidebar />
       </div>
     </>
