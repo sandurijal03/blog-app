@@ -19,7 +19,8 @@ const userSchema = new Schema(
     },
     profilePic: {
       type: String,
-      default: '',
+      default:
+        'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png',
     },
   },
   { timestamps: true },
